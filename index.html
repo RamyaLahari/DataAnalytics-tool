@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quicksort Visualizer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <section class="workspace" aria-label="Quicksort visualizer">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Algorithm visualizer</p>
+          <h1>Quicksort</h1>
+        </div>
+        <div class="stats" aria-label="Run statistics">
+          <div>
+            <span id="comparisons">0</span>
+            <small>comparisons</small>
+          </div>
+          <div>
+            <span id="swaps">0</span>
+            <small>swaps</small>
+          </div>
+          <div>
+            <span id="partitions">0</span>
+            <small>partitions</small>
+          </div>
+        </div>
+      </header>
+
+      <section class="visual-panel">
+        <div id="arrayBars" class="array-bars" aria-label="Array bars"></div>
+      </section>
+
+      <section class="controls" aria-label="Visualizer controls">
+        <button id="playPause" class="primary">Play</button>
+        <button id="step">Step</button>
+        <button id="reset">Reset</button>
+        <button id="shuffle">Shuffle</button>
+
+        <label>
+          <span>Size</span>
+          <input id="size" type="range" min="8" max="64" value="28">
+        </label>
+
+        <label>
+          <span>Speed</span>
+          <input id="speed" type="range" min="40" max="900" value="360">
+        </label>
+
+        <label>
+          <span>Pivot</span>
+          <select id="pivotMode">
+            <option value="last">Last item</option>
+            <option value="first">First item</option>
+            <option value="middle">Middle item</option>
+            <option value="random">Random item</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="status-strip" aria-live="polite">
+        <strong id="statusTitle">Ready</strong>
+        <span id="statusText">Press Play to watch quicksort partition the array around a pivot.</span>
+      </section>
+    </section>
+
+    <aside class="side-panel" aria-label="Algorithm details">
+      <section class="panel-block">
+        <h2>Partition Trace</h2>
+        <ol id="trace"></ol>
+      </section>
+
+      <section class="panel-block">
+        <h2>Pseudocode</h2>
+        <pre class="code" aria-label="Quicksort pseudocode"><code><span data-line="quick">quicksort(low, high)</span>
+<span data-line="base">  if low &lt; high</span>
+<span data-line="partition">    pivotIndex = partition(low, high)</span>
+<span data-line="left">    quicksort(low, pivotIndex - 1)</span>
+<span data-line="right">    quicksort(pivotIndex + 1, high)</span>
+
+<span data-line="loop">partition(low, high)</span>
+<span data-line="pivot">  choose pivot</span>
+<span data-line="scan">  scan items from low to high - 1</span>
+<span data-line="compare">  move smaller items left of pivot</span>
+<span data-line="place">  place pivot in its final position</span></code></pre>
+      </section>
+
+      <section class="panel-block note">
+        <h2>How To Read It</h2>
+        <p><b>Blue</b> marks the pivot, <b>gold</b> marks values being compared, <b>green</b> marks sorted positions, and <b>red</b> flashes when values swap.</p>
+      </section>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
